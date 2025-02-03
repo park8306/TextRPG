@@ -23,6 +23,9 @@ namespace TextRPG
             Console.Write(">>");
             player.Name = Console.ReadLine();
 
+            InfoMenu infoMenu = new InfoMenu(player);
+            InventoryMenu inventoryMenu = new InventoryMenu(player);
+
             while (true)
             {
                 Console.Clear();
@@ -46,32 +49,11 @@ namespace TextRPG
                 {
                     switch (select)
                     {
-                        case 1:
-                            while(true)
-                            {
-                                Console.Clear();
-                                Console.WriteLine("상태 보기");
-                                Console.WriteLine("캐릭터 정보");
-                                Console.WriteLine();
-
-                                Console.WriteLine(player.ToString());
-                                Console.WriteLine();
-
-                                Console.WriteLine("0. 나가기");
-                                Console.WriteLine();
-
-                                Console.WriteLine("원하시는 행동을 입력해주세요.");
-                                Console.Write(">>");
-                                if ((int.TryParse(Console.ReadLine(), out select)) && select == 0)
-                                {
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("잘못된 입력입니다.");
-                                    Thread.Sleep(1000);
-                                }
-                            }
+                        case 1: // 정보
+                            infoMenu.Exe();
+                            break;
+                        case 2: // 인벤토리
+                            inventoryMenu.Exe();
                             break;
                         default:
                             break;
