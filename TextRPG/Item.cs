@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace TextRPG
 {
-    enum ItemType
+    public enum ItemType
     {
-        Attack,
-        Defence,
+        Attack,     // 무기
+        Defence,    // 방어구
         Count
     }
 
-    internal class Item
+    public class Item
     {
         public bool IsEquip { get; set; }
         public ItemType Type { get; set; } = ItemType.Attack;
@@ -21,8 +21,14 @@ namespace TextRPG
         public int Att {  get; set; }
         public int Def {  get; set; }
         public string Description { get; set; }
+        
+        public int PurchaseGold { get; set; }
 
-        public Item( ItemType type, string name, int att, int def, string description, bool isEquip = false)
+        public int SellGold { get; set; }
+
+        public bool IsPurchase { get; set; }
+
+        public Item( ItemType type, string name, int att, int def, string description, int purchaseGold, int sellGold, bool isEquip = false)
         {
             IsEquip = isEquip;
             Type = type;
@@ -30,21 +36,41 @@ namespace TextRPG
             Att = att;
             Def = def;
             Description = description;
+            PurchaseGold = purchaseGold;
+            SellGold = sellGold;
+            IsPurchase = false;
         }
 
-        public string InfoStr()
+        public string ItemStr()
         {
             string info = $"{Name}\t| ";
 
             if (Type == ItemType.Attack)
-                info += $"공격력 +{Att} ";
+                info += $"공격력 +{Att}\t |";
             else
-                info += $"방어력 +{Def} ";
+                info += $"방어력 +{Def}\t |";
 
-            info += Description;
+            info += " " + Description;
 
             if (IsEquip) info = "- [E]" + info;
             else info = "- " + info;
+
+            return info;
+        }
+
+        public string ShopItemStr()
+        {
+            string info = $"{Name}\t| ";
+
+            if (Type == ItemType.Attack)
+                info += $"공격력 +{Att}\t|";
+            else
+                info += $"방어력 +{Def}\t|";
+
+            info += " " + Description + "\t|";
+
+            if (IsPurchase) info += "구매완료";
+            else info += $" {PurchaseGold} G";
 
             return info;
         }

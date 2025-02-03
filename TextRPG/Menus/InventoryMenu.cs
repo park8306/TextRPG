@@ -27,6 +27,7 @@ namespace TextRPG
 
                 Console.WriteLine("[아이템 목록]");
 
+                player.Inventory.PrintItems();
                 Console.WriteLine(player.InventoryStr());
                 Console.WriteLine();
 

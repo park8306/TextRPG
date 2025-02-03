@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Design;
+using TextRPG.Menus;
 
 namespace TextRPG
 {
@@ -25,6 +26,7 @@ namespace TextRPG
 
             InfoMenu infoMenu = new InfoMenu(player);
             InventoryMenu inventoryMenu = new InventoryMenu(player);
+            ShopMenu shopMenu = new ShopMenu(player);
 
             while (true)
             {
@@ -54,6 +56,8 @@ namespace TextRPG
                             break;
                         case 2: // 인벤토리
                             inventoryMenu.Exe();
+                            break;
+                        case 3: shopMenu.Exe(); 
                             break;
                         default:
                             break;
