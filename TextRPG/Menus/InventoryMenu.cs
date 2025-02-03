@@ -27,7 +27,7 @@ namespace TextRPG
 
                 Console.WriteLine("[아이템 목록]");
 
-                Console.WriteLine(player.InfoStr());
+                Console.WriteLine(player.InventoryStr());
                 Console.WriteLine();
 
                 Console.WriteLine("1. 장착 관리");
@@ -38,6 +38,7 @@ namespace TextRPG
                 Console.Write(">>");
 
                 int select;
+                bool isExit = false;
                 if ((int.TryParse(Console.ReadLine(), out select)) && select > 0 && select <= 2)
                 {
                     switch (select)
@@ -45,6 +46,7 @@ namespace TextRPG
                         case 1:
                             break;
                         case 2:
+                            isExit = true;
                             break;
                     }
                 }
@@ -52,6 +54,11 @@ namespace TextRPG
                 {
                     Console.WriteLine("잘못된 입력입니다.");
                     Thread.Sleep(1000);
+                }
+
+                if (isExit)
+                {
+                    break;
                 }
             }
         }
