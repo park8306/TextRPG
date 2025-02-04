@@ -28,14 +28,14 @@ namespace TextRPG
         {
             Items = new List<Item>();
 
-            AddItem(ItemType.Defence, "무쇠갑옷", 0, 5, "무쇠로 만들어져 튼튼한 갑옷입니다.", 1000, 800);
-            AddItem(ItemType.Attack, "스파르타의 창", 7, 0, "스파르타의 전사들이 사용했다는 전설의 창입니다.", 1000, 800);
-            AddItem(ItemType.Attack, "낡은 검", 2, 0, "쉽게 볼 수 있는 낡은 검 입니다.", 1000, 800);
+            AddItem(ItemType.Defence, "무쇠갑옷", 0, 5, "무쇠로 만들어져 튼튼한 갑옷입니다.", 1000);
+            AddItem(ItemType.Attack, "스파르타의 창", 7, 0, "스파르타의 전사들이 사용했다는 전설의 창입니다.", 1000);
+            AddItem(ItemType.Attack, "낡은 검", 2, 0, "쉽게 볼 수 있는 낡은 검 입니다.", 1000);
         }
 
-        public void AddItem(ItemType type, string name, int att, int def, string description, int purchaseGold, int sellGold, bool isEquip = false)
+        public void AddItem(ItemType type, string name, int att, int def, string description, int purchaseGold, bool isEquip = false)
         {
-            Item item = new Item(type, name, att, def, description, purchaseGold, sellGold, isEquip);
+            Item item = new Item(type, name, att, def, description, purchaseGold, isEquip);
 
             AddItem(item);
         }

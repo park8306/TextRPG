@@ -24,11 +24,9 @@ namespace TextRPG
         
         public int PurchaseGold { get; set; }
 
-        public int SellGold { get; set; }
-
         public bool IsPurchase { get; set; }
 
-        public Item( ItemType type, string name, int att, int def, string description, int purchaseGold, int sellGold, bool isEquip = false)
+        public Item( ItemType type, string name, int att, int def, string description, int purchaseGold, bool isEquip = false)
         {
             IsEquip = isEquip;
             Type = type;
@@ -37,7 +35,6 @@ namespace TextRPG
             Def = def;
             Description = description;
             PurchaseGold = purchaseGold;
-            SellGold = sellGold;
             IsPurchase = false;
         }
 

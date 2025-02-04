@@ -17,7 +17,18 @@ namespace TextRPG
         public int Att {  get; set; }
         public int Def { get; set; }
         public int MaxHP { get; set; }
-        public int CurHP {  get; set; }
+
+        private int curHP;
+        public int CurHP 
+        { 
+            get { return curHP; } 
+            set 
+            { 
+                curHP = value;
+                if (curHP > MaxHP) curHP = MaxHP;
+                else if (curHP < 0) curHP = 0; 
+            } 
+        }
         public int Gold {  get; set; }
         public Inventory Inventory { get; set; }
 
