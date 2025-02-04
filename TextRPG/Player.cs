@@ -131,5 +131,9 @@ namespace TextRPG
             return Inventory.ItemSB.ToString();
         }
 
+        public void LevelCheck()
+        {
+            Level = ClearCount + 1;
+        }
     }
 }

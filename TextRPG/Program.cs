@@ -28,6 +28,7 @@ namespace TextRPG
             InventoryMenu inventoryMenu = new InventoryMenu(player);
             ShopMenu shopMenu = new ShopMenu(player);
             RestMenu restMenu = new RestMenu(player);
+            DungeonMenu dungeonMenu = new DungeonMenu(player);
 
             while (true)
             {
@@ -61,7 +62,7 @@ namespace TextRPG
                         case 3: shopMenu.Exe(); 
                             break;
                         case 4:
-                            player.CurHP -= 40; // 휴식 기능 확인하기 위해 테스트 코드
+                            dungeonMenu.Exe();
                             break;
                         case 5:
                             restMenu.Exe();
