@@ -35,6 +35,8 @@ namespace TextRPG
         public Item EquipAtt { get; set; }
         public Item EquipDef { get; set; }
 
+        public int ClearCount { get; set; }
+
         public Player(int level = 1, string name = "", string chad = "전사", int att = 10, int def = 5, int maxHP = 100, int gold = 1500)
         {
             Level = level;
@@ -47,14 +49,14 @@ namespace TextRPG
             Gold = gold;
             EquipAtt = null;
             EquipDef = null;
+            ClearCount = 0;
 
             Inventory = new Inventory();
         }
 
         public void EquipItem(Item item)
         {
-            if (EquipAtt != null || EquipDef != null)
-                UnEquipItem(item);
+            UnEquipItem(item);
 
             Att += item.Att;
             Def += item.Def;
@@ -68,20 +70,32 @@ namespace TextRPG
         }
         public void UnEquipItem(Item item)
         {
-            Item unEquipItem;
+            if (EquipAtt == null && EquipDef == null)
+                return;
+
+            Item unEquipItem = null;
             if (item.Type == ItemType.Attack)
             {
-                unEquipItem = EquipAtt;
-                EquipAtt = null;
+                if(EquipAtt != null)
+                {
+                    unEquipItem = EquipAtt;
+                    EquipAtt = null;
+                }
             }
             else
             {
-                unEquipItem = EquipDef;
-                EquipDef = null;
+                if (EquipDef != null)
+                {
+                    unEquipItem = EquipDef;
+                    EquipDef = null;
+                }
             }
 
-            Att -= unEquipItem.Att;
-            Def -= unEquipItem.Def;
+            if (unEquipItem != null)
+            {
+                Att -= unEquipItem.Att;
+                Def -= unEquipItem.Def;
+            }
 
             unEquipItem.IsEquip = false;
         }

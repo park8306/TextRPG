@@ -76,9 +76,12 @@ namespace TextRPG
 
                 Console.WriteLine("[아이템 목록]");
 
-                for (int i = 1; i <= player.Inventory.ItemCount; i++)
-                    Console.WriteLine($"- {i} {player.Inventory.Items[i - 1].ItemStr()}");
-                Console.WriteLine();
+                if (player.Inventory.ItemCount > 0)
+                {
+                    for (int i = 1; i <= player.Inventory.ItemCount; i++)
+                        Console.WriteLine($"- {i} {player.Inventory.Items[i - 1].ItemStr()}");
+                    Console.WriteLine();
+                }
 
                 Console.WriteLine("0. 나가기");
                 Console.WriteLine();

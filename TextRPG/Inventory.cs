@@ -27,6 +27,20 @@ namespace TextRPG
             if (!(ItemCount >= MAX_INVENTORY_COUNT))
                 Items[ItemCount++] = item;
         }
+        
+        public void RemoveItem(int index)
+        {
+            if (ItemCount <= 0) return;
+
+            Items[index] = null;
+            if (index != ItemCount - 1)
+            {
+                for (int i = index; i < ItemCount; i++)
+                {
+                    Items[index] = Items[index + 1];
+                }
+            }
+        }
 
         public void PrintItems()
         {
