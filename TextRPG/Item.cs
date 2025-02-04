@@ -52,8 +52,7 @@ namespace TextRPG
 
             info += " " + Description;
 
-            if (IsEquip) info = "- [E]" + info;
-            else info = "- " + info;
+            if (IsEquip) info = "[E]" + info;
 
             return info;
         }
