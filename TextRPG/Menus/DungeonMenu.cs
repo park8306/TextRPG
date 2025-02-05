@@ -109,18 +109,6 @@ namespace TextRPG.Menus
 
         private void DungeonClear(int dungeonLv)
         {
-            /*던전 클리어
-축하합니다!!
-쉬운 던전을 클리어 하였습니다.
-
-[탐험 결과]
-체력 100 -> 70
-Gold 1000 G -> 2200 G 
-
-0. 나가기
-
-원하시는 행동을 입력해주세요.
->>*/
             player.ClearCount++;
             player.LevelCheck();
             while (true)
@@ -152,19 +140,6 @@ Gold 1000 G -> 2200 G
 
         }
 
-        /*- 권장 방어력보다 낮다면
-    - 40% 확률로 던전 실패
-        - 보상 없고 체력 감소 절반
-    - 권장 방어력 보다 높다면
-        - 던전 클리어
-            - 권장 방어력 +- 에 따라 종료시 체력 소모 반영
-             - 기본 체력 감소량
-                 - 20 ~ 35 랜덤
-                 - (내 방어력 - 권장 방어력) 만큼 랜덤 값에 설정
-                 - ex) 권장 방어력 5, 내 방어력 7
-                 20(-2) ~ 35(-2) 랜덤
-                 - ex) 권장 방어력 11, 내 방어력 5
-                 20(+6) ~ 35(+6) 랜덤*/
         private void DungeonResult(bool isClear, int dungeonLv)
         {
             Console.WriteLine("[탐험 결과]");
@@ -181,7 +156,7 @@ Gold 1000 G -> 2200 G
             {
                 int randHP = new Random().Next(20, 36);
                 // 내 방어력 - 권장 방어력
-                int diffDef = player.Def - dungeons[dungeonLv - 1].DungeonDef;
+                int diffDef = (int)player.Def - dungeons[dungeonLv - 1].DungeonDef;
                 randHP -= diffDef;
 
                 player.CurHP -= randHP;
@@ -193,18 +168,6 @@ Gold 1000 G -> 2200 G
             Console.WriteLine($"체력 {originHP} -> {player.CurHP}");
         }
 
-        /*- 공격력으로 던전 클리어시 보상을 어느정도 얻을지 계산됩니다.
-    - 각 던전별 기본 클리어 보상
-        - 쉬운 던전 - 1000 G
-        - 일반 던전 - 1700 G
-        - 어려운 던전 - 2500 G
-    - 공격력  ~ 공격력 * 2 의 % 만큼 추가 보상 획득 가능
-        - ex) 공격력 10, 쉬움 던전
-        기본 보상 1000 G
-        공격력으로 인한 추가 보상 10 ~ 20%
-        - ex) 공격력 15, 어려운 던전
-        기본 보상 2500 G
-        공격력으로 인한 추가 보상 15 ~ 30%*/
         private void GoldResult(bool isClear, int dungeonLv)
         {
             int originGold = player.Gold;
@@ -212,7 +175,7 @@ Gold 1000 G -> 2200 G
 
             if(isClear)
             {
-                int rewardPercent = new Random().Next(player.Att, player.Att * 2 + 1);
+                int rewardPercent = new Random().Next((int)player.Att, (int)player.Att * 2 + 1);
                 rewardGold += (int)(rewardGold  * (rewardPercent / 100.0f));
             }
             else
@@ -221,6 +184,7 @@ Gold 1000 G -> 2200 G
             }
 
             int resultGold = originGold + rewardGold;
+            player.Gold = resultGold;
 
             Console.WriteLine($"Gold {originGold} G -> {resultGold} G");
         }

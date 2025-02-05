@@ -15,6 +15,7 @@ namespace TextRPG
 
     public class Item
     {
+        public int ID {  get; set; }
         public bool IsEquip { get; set; }
         public ItemType Type { get; set; } = ItemType.Attack;
         public string Name { get; set; }
@@ -26,8 +27,9 @@ namespace TextRPG
 
         public bool IsPurchase { get; set; }
 
-        public Item( ItemType type, string name, int att, int def, string description, int purchaseGold, bool isEquip = false)
+        public Item(int id, ItemType type, string name, int att, int def, string description, int purchaseGold, bool isEquip = false)
         {
+            ID = id;
             IsEquip = isEquip;
             Type = type;
             Name = name;

@@ -12,11 +12,14 @@ namespace TextRPG
             Shop,
             Dungeon,
             Rest,
+            Save,
+            Load,
             Count
         }
 
         static void Main(string[] args)
         {
+            GameState gameState;
             Player player = new Player();
 
             Console.WriteLine("Text RPG에 입장하신 것을 환영합니다.");
@@ -41,6 +44,8 @@ namespace TextRPG
                 Console.WriteLine("3. 상점");
                 Console.WriteLine("4. 던전입장");
                 Console.WriteLine("5. 휴식하기");
+                Console.WriteLine("6. 저장하기");
+                Console.WriteLine("7. 불러오기");
                 Console.WriteLine();
 
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
@@ -51,23 +56,29 @@ namespace TextRPG
                     && select > 0
                     && select <= (int)GameState.Count)
                 {
-                    switch (select)
+                    gameState = (GameState)select;
+                    switch (gameState)
                     {
-                        case 1: // 정보
+                        case GameState.Info:
                             infoMenu.Exe();
                             break;
-                        case 2: // 인벤토리
+                        case GameState.Inventory: // 인벤토리
                             inventoryMenu.Exe();
                             break;
-                        case 3: shopMenu.Exe(); 
+                        case GameState.Shop: shopMenu.Exe(); 
                             break;
-                        case 4:
+                        case GameState.Dungeon:
                             dungeonMenu.Exe();
                             break;
-                        case 5:
+                        case GameState.Rest:
                             restMenu.Exe();
                             break;
-                        default:
+                        case GameState.Save:
+                            JasonManager.Instance().SaveInfo(player);
+                            break;
+                        case GameState.Load:
+                            JasonManager.Instance().LoadInfo(player);
+                            Console.ReadKey();
                             break;
                     }
                 }

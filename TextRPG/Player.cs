@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,8 +15,8 @@ namespace TextRPG
         public int Level { get; set; }
         public string Name { get; set; }
         public string Chad { get; set; }    // 직업
-        public int Att {  get; set; }
-        public int Def { get; set; }
+        public float Att {  get; set; }
+        public float Def { get; set; }
         public int MaxHP { get; set; }
 
         private int curHP;
@@ -36,6 +37,9 @@ namespace TextRPG
         public Item EquipDef { get; set; }
 
         public int ClearCount { get; set; }
+
+        const float ATT_PER_LEVEL = 0.5f; // 레벨 당 공격력 증가 값
+        const float DEF_PER_LEVEL = 1.0f; // 레벨 당 방어력 증가
 
         public Player(int level = 1, string name = "", string chad = "전사", int att = 10, int def = 5, int maxHP = 100, int gold = 1500)
         {
@@ -97,7 +101,8 @@ namespace TextRPG
                 Def -= unEquipItem.Def;
             }
 
-            unEquipItem.IsEquip = false;
+            if(unEquipItem != null)
+                unEquipItem.IsEquip = false;
         }
 
         public string InfoStr()
@@ -134,6 +139,9 @@ namespace TextRPG
         public void LevelCheck()
         {
             Level = ClearCount + 1;
+
+            Att += ATT_PER_LEVEL * Level;
+            Def += DEF_PER_LEVEL * Level;
         }
     }
 }
