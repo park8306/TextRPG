@@ -79,6 +79,7 @@ namespace TextRPG.Menus
             }
         }
 
+        // 아이템 구매창
         private void Purchase()
         {
             while (true)
@@ -152,6 +153,7 @@ namespace TextRPG.Menus
             }
         }
 
+        // 아이템 판매창
         private void Sell()
         {
             while (true)

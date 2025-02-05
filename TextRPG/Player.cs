@@ -12,11 +12,16 @@ namespace TextRPG
     // 레벨 / 이름 / 직업 / 공격력 / 방어력 / 체력 / Gold
     public class Player
     {
+        const int BASE_ATT = 10;
+        const int BASE_DEF = 5;
         public int Level { get; set; }
         public string Name { get; set; }
         public string Chad { get; set; }    // 직업
-        public float Att {  get; set; }
-        public float Def { get; set; }
+
+        float att;
+        public float Att { get { return att; } set { att = BASE_ATT + ((Level - 1) * ATT_PER_LEVEL) + value; } }
+        float def;
+        public float Def { get { return def; } set { def = BASE_DEF + ((Level - 1) * DEF_PER_LEVEL) + value; } }
         public int MaxHP { get; set; }
 
         private int curHP;
@@ -58,12 +63,15 @@ namespace TextRPG
             Inventory = new Inventory();
         }
 
+        // 아이템 장착
         public void EquipItem(Item item)
         {
             UnEquipItem(item);
 
-            Att += item.Att;
-            Def += item.Def;
+            if (item.Type == ItemType.Attack)
+                Att = item.Att;
+            else
+                Def = item.Def;
 
             if (item.Type == ItemType.Attack)
                 EquipAtt = item;
@@ -72,6 +80,8 @@ namespace TextRPG
 
             item.IsEquip = true;
         }
+
+        // 아이템 해제
         public void UnEquipItem(Item item)
         {
             if (EquipAtt == null && EquipDef == null)
@@ -140,8 +150,8 @@ namespace TextRPG
         {
             Level = ClearCount + 1;
 
-            Att += ATT_PER_LEVEL * Level;
-            Def += DEF_PER_LEVEL * Level;
+            Att = EquipAtt.Att;
+            Def = EquipDef.Def;
         }
     }
 }

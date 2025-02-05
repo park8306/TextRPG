@@ -65,6 +65,7 @@ namespace TextRPG
             }
         }
 
+        // 장착 관리
         private void Equip()
         {
             while (true)

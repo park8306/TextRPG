@@ -10,21 +10,20 @@ using Newtonsoft.Json.Serialization;
 
 namespace TextRPG
 {
-    public class JasonManager
+    public class JsonManager
     {
-        public static JasonManager instance;
+        public static JsonManager instance;
 
-        public static JasonManager Instance()
+        public static JsonManager Instance()
         {
             if (instance == null)
             {
-                instance = new JasonManager();
+                instance = new JsonManager();
             }
             return instance;
         }
 
         string folderPath = @"D:\NBC\CsProject\TextRPG\TextRPG\TextRPG\Save\";
-        string fileName = "Save.json";
 
         public void SaveInfo(Player player)
         {
@@ -68,13 +67,13 @@ namespace TextRPG
             {
                 Directory.CreateDirectory(folderPath);
             }
-            string filePath = folderPath + fileName;
+            string filePath = folderPath + player.Name + ".json";
             File.WriteAllText(filePath, playerInfo.ToString());
         }
 
         public void LoadInfo(Player player)
         {
-            string filePath = folderPath + fileName;
+            string filePath = folderPath + player.Name + ".json";
             string loadFile = File.ReadAllText(filePath).ToString();
             JObject playerInfo = JObject.Parse(loadFile);
 
@@ -110,6 +109,12 @@ namespace TextRPG
                     }
                 }
             }
+        }
+
+        // 캐릭터 이름에 맞는 json 파일이 있는지 확인하는 함수
+        public bool CheckFile(string enterName)
+        {
+            return File.Exists(folderPath + enterName + ".json"); 
         }
     }
 }

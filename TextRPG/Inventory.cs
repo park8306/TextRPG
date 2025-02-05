@@ -42,6 +42,7 @@ namespace TextRPG
             }
         }
 
+        // StringBuilder에 한번에 아이템 정보를 작성
         public void PrintItems()
         {
             ItemSB.Clear();
