@@ -19,9 +19,9 @@ namespace TextRPG
         public string Chad { get; set; }    // 직업
 
         float att;
-        public float Att { get { return att; } set { att = BASE_ATT + ((Level - 1) * ATT_PER_LEVEL) + value; } }
+        public float Att { get { return att; } set { att = BASE_ATT + ((Level - 1) * ATT_PER_LEVEL) + (EquipAtt != null ? EquipAtt.Att : 0); } }
         float def;
-        public float Def { get { return def; } set { def = BASE_DEF + ((Level - 1) * DEF_PER_LEVEL) + value; } }
+        public float Def { get { return def; } set { def = BASE_DEF + ((Level - 1) * DEF_PER_LEVEL) + (EquipDef != null ? EquipDef.Def : 0); } }
         public int MaxHP { get; set; }
 
         private int curHP;
@@ -69,14 +69,14 @@ namespace TextRPG
             UnEquipItem(item);
 
             if (item.Type == ItemType.Attack)
-                Att = item.Att;
-            else
-                Def = item.Def;
-
-            if (item.Type == ItemType.Attack)
                 EquipAtt = item;
             else
                 EquipDef = item;
+
+            if (item.Type == ItemType.Attack)
+                Att = item.Att;
+            else
+                Def = item.Def;
 
             item.IsEquip = true;
         }

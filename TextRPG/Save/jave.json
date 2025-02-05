@@ -1,0 +1,27 @@
+{
+  "Name": "jave",
+  "Level": 1,
+  "Chad": "도적",
+  "Att": 14.0,
+  "Def": 10.0,
+  "MaxHP": 100,
+  "CurHP": 100,
+  "Gold": 0,
+  "ClearCount": 0,
+  "EquipAttID": 1,
+  "EquipDefID": -1,
+  "Inventory": [
+    {
+      "ID": 1,
+      "IsEquip": true
+    },
+    {
+      "ID": 5,
+      "IsEquip": false
+    },
+    {
+      "ID": 0,
+      "IsEquip": false
+    }
+  ]
+}

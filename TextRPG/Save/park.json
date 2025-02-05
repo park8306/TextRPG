@@ -1,0 +1,27 @@
+{
+  "Name": "park",
+  "Level": 3,
+  "Chad": "전사",
+  "Att": 15.0,
+  "Def": 12.0,
+  "MaxHP": 100,
+  "CurHP": 51,
+  "Gold": 4165,
+  "ClearCount": 2,
+  "EquipAttID": 1,
+  "EquipDefID": 5,
+  "Inventory": [
+    {
+      "ID": 1,
+      "IsEquip": true
+    },
+    {
+      "ID": 0,
+      "IsEquip": false
+    },
+    {
+      "ID": 5,
+      "IsEquip": true
+    }
+  ]
+}
